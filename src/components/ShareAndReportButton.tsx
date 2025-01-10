@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import InstagramShareButton from '@/components/InstagramShareButton';
+import KakaoShareButton from '@/components/KakaoShareButton';
 
 export default function ShareAndReportButton({ type }: { type: string }) {
     const router = useRouter();
@@ -43,15 +44,10 @@ export default function ShareAndReportButton({ type }: { type: string }) {
                         </DialogHeader>
                         <div className="flex flex-col items-center space-y-4 mt-4">
                             <h3>인스그램 스토리 공유시 @yaktoon 태그해서 올리면 추첨을 통해 기프티콘 보내드립니다!</h3>
-                            <Button
-                                onClick={() => {
-                                    alert('카카오톡 공유하기 기능 호출!');
-                                    handleShareComplete(); // 공유 완료 시 호출
-                                }}
-                                className="w-full bg-[#F7E600] text-black hover:bg-[#E6D700]"
-                            >
-                                카카오톡 공유하기
-                            </Button>
+                            <KakaoShareButton
+                                type={type}
+                                onShareComplete={handleShareComplete}
+                            />
                             <Button
                                 onClick={() => {
                                     alert('인스타그램 공유하기 기능 호출!');
