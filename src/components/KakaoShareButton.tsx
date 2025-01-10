@@ -4,85 +4,118 @@ import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 
 declare global {
-  interface Window {
-    Kakao: any;
-  }
+    interface Window {
+        Kakao: KakaoSDK;
+    }
+}
+
+interface KakaoSDK {
+    isInitialized: () => boolean;
+    init: (apiKey: string) => void;
+    Share: {
+        sendDefault: (params: KakaoShareParams) => void;
+    };
+}
+
+interface KakaoShareParams {
+    objectType: string;
+    content: {
+        title: string;
+        description: string;
+        imageUrl: string;
+        link: {
+            mobileWebUrl: string;
+            webUrl: string;
+        };
+    };
+    social?: {
+        likeCount?: number;
+        commentCount?: number;
+        sharedCount?: number;
+    };
+    buttons: Array<{
+        title: string;
+        link: {
+            mobileWebUrl: string;
+            webUrl: string;
+        };
+    }>;
 }
 
 interface KakaoShareButtonProps {
-  type: string;
-  onShareComplete: () => void; // 여전히 클릭 후 로직을 처리하기 위한 함수
+    type: string;
+    onShareComplete: () => void; // 여전히 클릭 후 로직을 처리하기 위한 함수
 }
 
 const KakaoShareButton = ({ type, onShareComplete }: KakaoShareButtonProps) => {
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js';
-    script.async = true;
-    script.onload = () => {
-      if (window.Kakao && !window.Kakao.isInitialized()) {
-        window.Kakao.init('d11d6e420852d3b36bd89279fe207f8b');
-      }
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = 'https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js';
+        script.async = true;
+        script.onload = () => {
+            if (window.Kakao && !window.Kakao.isInitialized()) {
+                window.Kakao.init('d11d6e420852d3b36bd89279fe207f8b');
+            }
+        };
+        document.head.appendChild(script);
+
+        return () => {
+            document.head.removeChild(script);
+        };
+    }, []);
+
+    const handleShare = () => {
+        if (!window.Kakao?.Share) {
+            console.error('Kakao SDK is not loaded');
+            return;
+        }
+
+        window.Kakao.Share.sendDefault({
+            objectType: 'feed',
+            content: {
+                title: '나의 재수 성공 확률은?',
+                description: `${type} 유형의 재수 성공 확률을 알아보세요!`,
+                imageUrl: `${window.location.origin}/images/${type}.png`,
+                link: {
+                    mobileWebUrl: window.location.origin,
+                    webUrl: window.location.origin,
+                },
+            },
+            social: {
+                likeCount: 286,
+                commentCount: 45,
+                sharedCount: 845,
+            },
+            buttons: [
+                {
+                    title: '테스트 하러가기',
+                    link: {
+                        mobileWebUrl: window.location.origin,
+                        webUrl: window.location.origin,
+                    },
+                },
+                {
+                    title: '결과 보기',
+                    link: {
+                        mobileWebUrl: `${window.location.origin}/report/${type}`,
+                        webUrl: `${window.location.origin}/report/${type}`,
+                    },
+                },
+            ],
+        });
+
+        // 공유 버튼 클릭 후 처리할 로직
+        onShareComplete(); // 성공 여부와 관계없이 콜백 호출
     };
-    document.head.appendChild(script);
 
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, []);
-
-  const handleShare = () => {
-    if (!window.Kakao?.Share) {
-      console.error('Kakao SDK is not loaded');
-      return;
-    }
-
-    window.Kakao.Share.sendDefault({
-      objectType: 'feed',
-      content: {
-        title: '나의 재수 성공 확률은?',
-        description: `${type} 유형의 재수 성공 확률을 알아보세요!`,
-        imageUrl: `${window.location.origin}/images/${type}.png`,
-        link: {
-          mobileWebUrl: window.location.origin,
-          webUrl: window.location.origin,
-        },
-      },
-      social: {
-        likeCount: 286,
-        commentCount: 45,
-        sharedCount: 845,
-      },
-      buttons: [
-        {
-          title: '테스트 하러가기',
-          link: {
-            mobileWebUrl: window.location.origin,
-            webUrl: window.location.origin,
-          },
-        },
-        {
-          title: '결과 보기',
-          link: {
-            mobileWebUrl: `${window.location.origin}/result/${type}`,
-            webUrl: `${window.location.origin}/result/${type}`,
-          },
-        },
-      ],
-    });
-
-    // 공유 버튼 클릭 후 처리할 로직
-    onShareComplete(); // 성공 여부와 관계없이 콜백 호출
-  };
-
-  return (
-    <Button
-      onClick={handleShare}
-      className="w-full bg-[#F7E600] text-black hover:bg-[#E6D700]"
-    >
-      카카오톡 공유하기
-    </Button>
-  );
+    return (
+        <Button
+            onClick={handleShare}
+            className="w-full bg-[#F7E600] text-black hover:bg-[#E6D700]"
+        >
+            카카오톡 공유하기
+        </Button>
+    );
 };
 
 export default KakaoShareButton;
