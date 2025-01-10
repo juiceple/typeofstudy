@@ -133,7 +133,7 @@ export default function ReportPage() {
                 {/* 짝꿍학생 섹션 */}
                 <div className='bg-gray-200 p-4 rounded-lg shadow-xl space-y-2'>
                   <h3 className="text-4xl font-semibold">짝꿍 학생</h3>
-                  <p className="font-semibold text-2xl bg-gray-400 p-2 w-auto text-center rounded-lg">짝: {report.content.짝꿍학생.짝}</p>
+                  <p className="font-semibold text-2xl bg-gray-300 p-2 w-auto text-center rounded-lg">짝: {report.content.짝꿍학생.짝}</p>
                   <ul className="list-disc pl-5 space-y-2 text-2xl">
                     {report.content.짝꿍학생.이유.map((reason, index) => (
                       <li key={index}>{reason}</li>
@@ -149,13 +149,17 @@ export default function ReportPage() {
                       <li key={index}>{advice}</li>
                     ))}
                   </ul>
-                  <p className="text-2xl font-bold mt-4">성공 확률: {report.content.조언.확률}</p>
+                </div>
+
+                {/* 확률 세션 */}
+                <div className='bg-gray-200 p-4 rounded-lg shadow-xl space-y-2'>
+                  <p className="text-2xl font-bold">조언을 이행 할 경우 재수 확률 {report.content.확률}</p>
                 </div>
 
                 {/* 수시/정시 적합도 섹션 */}
                 <div className='bg-gray-200 p-4 rounded-lg shadow-xl space-y-2'>
                   <h3 className="text-4xl font-semibold">수시/정시 적합도</h3>
-                  <p className="text-4xl text-black bg-gray-400 p-2 w-auto text-center rounded-lg">{report.content.수시정시적합도.vs}</p>
+                  <p className="font-semibold text-2xl text-black bg-gray-300 p-2 w-auto text-center rounded-lg">{report.content.수시정시적합도.vs}</p>
                   <p className="text-2xl text-black">{report.content.수시정시적합도.설명}</p>
                 </div>
 
@@ -178,7 +182,7 @@ export default function ReportPage() {
                     ))}
                   </ul>
                   <Link href={report.content.추천프로그램.url} className='w-full'>
-                    <div className='bg-gray-300 w-full p-2 rounded-lg shadow-lg text-center text-3xl'>
+                    <div className='bg-gray-300 w-full mt-3 p-2 rounded-lg text-center text-3xl'>
                       {report.content.추천프로그램.프로그램명} 보러가기
                     </div>
                   </Link>

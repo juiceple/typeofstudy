@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import InstagramShareButton from '@/components/InstagramShareButton';
 
 export default function ShareAndReportButton({ type }: { type: string }) {
     const router = useRouter();
@@ -13,7 +14,7 @@ export default function ShareAndReportButton({ type }: { type: string }) {
     useEffect(() => {
         const sharedStatus = localStorage.getItem('isShared') === 'false';
         setShared(sharedStatus);
-      }, []);
+    }, []);
 
     const handleShareComplete = () => {
         localStorage.setItem('userType', type);  // 현재 유형을 localStorage에 저장
@@ -21,7 +22,7 @@ export default function ShareAndReportButton({ type }: { type: string }) {
         setIsDialogOpen(false);  // 모달 닫기
         setShared(true);  // 공유 완료 상태 설정
     };
-    
+
 
     const handleReportView = () => {
         router.push(`/report/${type}`); // 상세 보고서 페이지로 이동
@@ -60,6 +61,10 @@ export default function ShareAndReportButton({ type }: { type: string }) {
                             >
                                 인스타그램 스토리 공유하기
                             </Button>
+                            <InstagramShareButton
+                                imageUrl="https://your-image-url.jpg"
+                                caption="공유하고 싶은 캡션"
+                            />
                             <Button
                                 onClick={() => setIsDialogOpen(false)}
                                 className="w-full bg-gray-500 text-white hover:bg-gray-600"
