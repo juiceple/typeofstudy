@@ -84,7 +84,7 @@ export default function ReportPage() {
             <Image
               src="/medsky-logo.png"
               alt="MedSky Logo"
-              width={80}
+              width={60}
               height={40}
               priority
               className="cursor-pointer"

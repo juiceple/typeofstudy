@@ -51,7 +51,7 @@ export default function Home() {
             <Image
               src="/medsky-logo.png"
               alt="MedSky Logo"
-              width={80}
+              width={60}
               height={40}
               priority
               className="cursor-pointer"
@@ -112,7 +112,7 @@ export default function Home() {
         <Image
           src="/medsky-logo.png"
           alt="MedSky Logo"
-          width={100}
+          width={60}
           height={40}
           priority
         />
