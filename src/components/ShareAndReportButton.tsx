@@ -62,8 +62,8 @@ export default function ShareAndReportButton({ type }: { type: string }) {
                                 인스타그램 스토리 공유하기
                             </Button>
                             <InstagramShareButton
-                                imageUrl="https://your-image-url.jpg"
-                                caption="공유하고 싶은 캡션"
+                                imagePath={`/images/${type}`}
+                                caption="친구야 너가 재수할 확률은?"
                             />
                             <Button
                                 onClick={() => setIsDialogOpen(false)}
