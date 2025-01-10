@@ -155,7 +155,7 @@ export default function ReportPage() {
                 {/* 수시/정시 적합도 섹션 */}
                 <div className='bg-gray-200 p-4 rounded-lg shadow-xl space-y-2'>
                   <h3 className="text-4xl font-semibold">수시/정시 적합도</h3>
-                  <p className="text-4xl text-black bg-gray-400 p-2 w-36 text-center rounded-lg">{report.content.수시정시적합도.vs}</p>
+                  <p className="text-4xl text-black bg-gray-400 p-2 w-auto text-center rounded-lg">{report.content.수시정시적합도.vs}</p>
                   <p className="text-2xl text-black">{report.content.수시정시적합도.설명}</p>
                 </div>
 

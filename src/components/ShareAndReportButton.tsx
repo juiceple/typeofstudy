@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
@@ -10,8 +10,14 @@ export default function ShareAndReportButton({ type }: { type: string }) {
     const [shared, setShared] = useState(false); // 공유 완료 여부 관리
     const [isDialogOpen, setIsDialogOpen] = useState(false); // 모달 열림 여부
 
+    useEffect(() => {
+        const sharedStatus = localStorage.getItem('isShared') === 'false';
+        setShared(sharedStatus);
+      }, []);
+
     const handleShareComplete = () => {
         localStorage.setItem('userType', type);  // 현재 유형을 localStorage에 저장
+        localStorage.setItem('isShared', 'true'); // 공유 상태 true 설정
         setIsDialogOpen(false);  // 모달 닫기
         setShared(true);  // 공유 완료 상태 설정
     };
