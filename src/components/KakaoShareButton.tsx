@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 
 declare global {
@@ -11,27 +11,21 @@ declare global {
 
 interface KakaoShareButtonProps {
   type: string;
-  onShareComplete: () => void;
+  onShareComplete: () => void; // 여전히 클릭 후 로직을 처리하기 위한 함수
 }
 
-const KakaoShareButton = ({ 
-  type,
-  onShareComplete,
-}: KakaoShareButtonProps) => {
+const KakaoShareButton = ({ type, onShareComplete }: KakaoShareButtonProps) => {
   useEffect(() => {
-    // SDK가 로드되었는지 확인
     const script = document.createElement('script');
     script.src = 'https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js';
     script.async = true;
     script.onload = () => {
-      // SDK 로드 완료 후 초기화
       if (window.Kakao && !window.Kakao.isInitialized()) {
         window.Kakao.init('d11d6e420852d3b36bd89279fe207f8b');
       }
     };
     document.head.appendChild(script);
 
-    // Cleanup
     return () => {
       document.head.removeChild(script);
     };
@@ -57,7 +51,7 @@ const KakaoShareButton = ({
       social: {
         likeCount: 286,
         commentCount: 45,
-        sharedCount: 845
+        sharedCount: 845,
       },
       buttons: [
         {
@@ -75,13 +69,10 @@ const KakaoShareButton = ({
           },
         },
       ],
-    })
-    .then(() => {
-      onShareComplete();
-    })
-    .catch((error: any) => {
-      console.error('Kakao share error:', error);
     });
+
+    // 공유 버튼 클릭 후 처리할 로직
+    onShareComplete(); // 성공 여부와 관계없이 콜백 호출
   };
 
   return (
