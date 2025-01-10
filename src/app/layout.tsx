@@ -33,10 +33,6 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Dongle&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@100..900&display=swap"
           rel="stylesheet"
         />
-        <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.6.0/kakao.min.js"></script>
-        <script>
-          Kakao.init('YOUR_KAKAO_JAVASCRIPT_KEY');
-        </script>
         {children}
       </body>
     </html>

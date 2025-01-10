@@ -66,7 +66,7 @@ export default function Home() {
               학습 유형 진단 결과
             </CardTitle>
             <p className="text-xl text-center mt-4">
-              당신의 학습 유형은 <strong>{result.name}</strong> 입니다!
+              {`당신의 학습 유형은 ${result.name}입니다!`}
             </p>
           </CardHeader>
           <CardContent>

@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { TypeInfo, DetailedReports } from '../../types';
 import { useRouter, useParams } from 'next/navigation';
-import Head from 'next/head';
 import Link from 'next/link';
 
 export default function ReportPage() {
