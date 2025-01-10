@@ -6,12 +6,10 @@ import { Questions, TypeInfo } from './types';
 import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { useRouter } from 'next/navigation';
 import ShareAndReportButton from '@/components/ShareAndReportButton';
 import Image from 'next/image';
 
 export default function Home() {
-  const router = useRouter();  // 라우터 선언 추가
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [scores, setScores] = useState<Record<string, number>>({
     WP: 0,
