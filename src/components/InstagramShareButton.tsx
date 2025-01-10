@@ -2,30 +2,39 @@ import { Button } from "@/components/ui/button";
 import { Share } from "lucide-react";
 
 interface InstagramShareButtonProps {
-  imagePath: string; // public 폴더 내의 이미지 경로
+  imagePath: string;
   caption?: string;
 }
 
-const InstagramShareButton = ({ imagePath = '', caption = '' }: InstagramShareButtonProps) => {
-  const shareToInstagram = () => {
-    // 현재 도메인을 가져와서 절대 URL 생성
+const InstagramShareButton = ({ imagePath, caption = '' }: InstagramShareButtonProps) => {
+  const shareToInstagram = async () => {
     const baseUrl = window.location.origin;
-    // public 폴더의 이미지에 대한 절대 URL 생성
     const absoluteImageUrl = `${baseUrl}${imagePath}`;
-    
-    const instagramUrl = `instagram-stories://share`;
-    const params = new URLSearchParams({
-      source_application: 'your_app_name',
-      media: absoluteImageUrl,
-      caption: caption
-    });
 
+    // 모바일 기기 확인
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
     if (isMobile) {
-      window.location.href = `${instagramUrl}?${params.toString()}`;
+      // 웹 공유 API 지원 확인
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: caption,
+            text: caption,
+            url: absoluteImageUrl,
+          });
+        } catch (error) {
+          console.error('Error sharing:', error);
+          // 공유 API 실패시 인스타그램 앱으로 직접 이동
+          window.location.href = `instagram://camera`;
+        }
+      } else {
+        // 공유 API를 지원하지 않는 경우 인스타그램 앱으로 직접 이동
+        window.location.href = `instagram://camera`;
+      }
     } else {
-      alert('모바일 기기에서 접속해주세요.');
+      // 데스크톱에서는 인스타그램 웹사이트로 이동
+      window.open('https://www.instagram.com', '_blank');
     }
   };
 
@@ -35,7 +44,7 @@ const InstagramShareButton = ({ imagePath = '', caption = '' }: InstagramShareBu
       className="flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
     >
       <Share className="w-4 h-4" />
-      인스타그램 스토리 공유
+      인스타그램으로 공유하기
     </Button>
   );
 };
