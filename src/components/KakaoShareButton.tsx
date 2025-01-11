@@ -97,8 +97,8 @@ const KakaoShareButton = ({ type, onShareComplete }: KakaoShareButtonProps) => {
                 {
                     title: '결과 보기',
                     link: {
-                        mobileWebUrl: `${window.location.origin}/report/${type}`,
-                        webUrl: `${window.location.origin}/report/${type}`,
+                        mobileWebUrl: `${window.location.origin}/${type}`,
+                        webUrl: `${window.location.origin}/${type}`,
                     },
                 },
             ],

@@ -14,6 +14,7 @@ export default function ShareAndReportButton({ type }: { type: string }) {
 
     useEffect(() => {
         const sharedStatus = localStorage.getItem('isShared') === 'false';
+        localStorage.setItem('userType', '')
         setShared(sharedStatus);
     }, []);
 
