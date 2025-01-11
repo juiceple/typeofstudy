@@ -5,11 +5,10 @@ import { Share } from "lucide-react";
 
 interface InstagramShareButtonProps {
   imagePath: string; // 예: "/images/FA.jpg"
-  caption?: string;
   onShareComplete?: () => void;  // 추가: 부모로부터 넘어오는 콜백
 }
 
-const InstagramShareButton = ({ imagePath, caption = "", onShareComplete }: InstagramShareButtonProps) => {
+const InstagramShareButton = ({ imagePath, onShareComplete }: InstagramShareButtonProps) => {
   const downloadAndShare = async () => {
     try {
       // 브라우저 상에서 현재 도메인 정보 가져옴

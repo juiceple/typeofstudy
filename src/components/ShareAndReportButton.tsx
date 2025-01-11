@@ -60,7 +60,6 @@ export default function ShareAndReportButton({ type }: { type: string }) {
                             </Button>
                             <InstagramShareButton
                                 imagePath={`/images/${type}.jpg`}
-                                caption="친구야 너가 재수할 확률은?"
                                 onShareComplete={handleShareComplete}  // 추가
                             />
 
