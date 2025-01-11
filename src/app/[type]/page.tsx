@@ -12,10 +12,9 @@ type Props = {
   params: {
     type: string;
   };
-  searchParams: { [key: string]: string | string[] | undefined };
 }
 
-export default function ResultPage({ params, searchParams }: Props) {
+export default function ResultPage({ params }: Props) {
   const router = useRouter();
   const type = params.type as keyof typeof TypeInfo;
   
