@@ -8,13 +8,14 @@ import ShareAndReportButton from '@/components/ShareAndReportButton';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-interface PageProps {
+type Props = {
   params: {
     type: string;
   };
+  searchParams: { [key: string]: string | string[] | undefined };
 }
 
-export default function ResultPage({ params }: PageProps) {
+export default function ResultPage({ params, searchParams }: Props) {
   const router = useRouter();
   const type = params.type as keyof typeof TypeInfo;
   
