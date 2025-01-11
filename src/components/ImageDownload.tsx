@@ -2,8 +2,7 @@
 
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Download } from "lucide-react";
-import Image from "next/image";
+import { Download, Share } from "lucide-react";
 
 interface TwoStepShareProps {
   imagePath: string; // 예: "/images/FA.jpg"
@@ -16,22 +15,31 @@ export default function TwoStepShare({
 }: TwoStepShareProps) {
   const [isDownloaded, setIsDownloaded] = useState(false);
 
+  // 1) 이미지 다운로드
   const handleDownload = async () => {
     try {
+      // 브라우저 상에서 현재 도메인 정보
       const baseUrl = window.location.origin;
       const finalImageUrl = new URL(imagePath, baseUrl).href;
 
+      // 이미지 fetch -> blob 변환
       const response = await fetch(finalImageUrl);
-      if (!response.ok) throw new Error("이미지를 불러오는데 실패했습니다.");
-
+      if (!response.ok) {
+        throw new Error("이미지를 불러오는데 실패했습니다.");
+      }
       const blob = await response.blob();
+
+      // 모바일 기기 판별
       const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
       if (isMobile) {
+        // iOS Safari 등에서 자동 다운로드가 막힐 수 있으므로, 새 탭에서 이미지를 열어 직접 저장하도록 유도
         const blobUrl = URL.createObjectURL(blob);
         window.open(blobUrl, "_blank");
-        alert("이미지를 길게 눌러 저장해주세요.");
+
+        alert("이미지를 길게 눌러 저장해주세요. 저장 후, '인스타그램 열기' 버튼을 눌러주세요!");
       } else {
+        // 데스크톱 환경 -> a 태그 생성하여 link.click()로 다운로드
         const url = window.URL.createObjectURL(blob);
         const link = document.createElement("a");
         link.href = url;
@@ -40,7 +48,8 @@ export default function TwoStepShare({
         link.click();
         document.body.removeChild(link);
         window.URL.revokeObjectURL(url);
-        alert("이미지가 다운로드되었습니다!");
+
+        alert("이미지가 다운로드되었습니다. 이제 '인스타그램 열기' 버튼을 눌러주세요!");
       }
 
       setIsDownloaded(true);
@@ -50,42 +59,41 @@ export default function TwoStepShare({
     }
   };
 
+  // 2) 인스타그램 열기
   const handleOpenInstagram = () => {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
     if (isMobile) {
+      // 인스타그램 스토리 카메라로 이동
       window.location.href = "instagram://story-camera";
     } else {
+      // 데스크톱 환경은 인스타그램 웹사이트 열기
       window.open("https://www.instagram.com", "_blank");
     }
 
+    // 인스타그램 열기 버튼을 누른 시점에 onShareComplete 호출
     if (onShareComplete) {
       onShareComplete();
     }
   };
 
   return (
-    <div className="flex gap-4 items-center">
-      {/* 다운로드 버튼 */}
+    <div className="flex flex-col gap-4">
       <Button
         onClick={handleDownload}
-        className="rounded-full bg-gray-400 hover:bg-gray-500 w-12 h-12 flex items-center justify-center p-2 shadow-md"
+        className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700"
       >
         <Download className="w-4 h-4" />
+        1) 사진 다운로드
       </Button>
 
-      {/* 인스타그램 버튼 */}
       <Button
         onClick={handleOpenInstagram}
-        className="relative rounded-full bg-gray-200 hover:bg-gray-300 w-12 h-12 shadow-md overflow-hidden"
-        disabled={!isDownloaded} // 다운로드 완료 후 활성화
+        className="flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
+        disabled={!isDownloaded} // 다운로드 완료 후에만 버튼 활성화
       >
-        <Image
-          src="/images/instagramlogo.jpeg"
-          alt="Instagram Logo"
-          fill // 부모에 맞춰 꽉 차게 설정
-          className="object-cover"
-        />
+        <Share className="w-4 h-4" />
+        2) 인스타그램 열기
       </Button>
     </div>
   );

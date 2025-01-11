@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
+import Image from "next/image";
 
 declare global {
     interface Window {
@@ -111,9 +112,14 @@ const KakaoShareButton = ({ type, onShareComplete }: KakaoShareButtonProps) => {
     return (
         <Button
             onClick={handleShare}
-            className="w-full bg-[#F7E600] text-black hover:bg-[#E6D700]"
+            className="relative rounded-full bg-gray-200 hover:bg-gray-300 w-12 h-12 shadow-md overflow-hidden"
         >
-            카카오톡 공유하기
+            <Image
+                src="/images/kakaologo.svg"
+                alt="Instagram Logo"
+                fill // 부모에 맞춰 꽉 차게 설정
+                className="object-cover"
+            />
         </Button>
     );
 };

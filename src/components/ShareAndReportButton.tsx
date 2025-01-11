@@ -39,30 +39,27 @@ export default function ShareAndReportButton({ type }: { type: string }) {
                             공유하고 상세 보고서 보기
                         </Button>
                     </DialogTrigger>
-                    <DialogContent className="max-w-lg">
+                    <DialogContent className="max-w-xs">
                         <DialogHeader>
                             <DialogTitle className="text-center">친구들과 공유하기</DialogTitle>
                         </DialogHeader>
-                        <div className="flex flex-col items-center space-y-4 mt-4">
-                            <h3>인스그램 스토리 공유시 @yaktoon 태그해서 올리면 추첨을 통해 기프티콘 보내드립니다!</h3>
-                            <KakaoShareButton
-                                type={type}
-                                onShareComplete={handleShareComplete}
-                            />
-                            <Button
-                                onClick={() => {
-                                    alert('인스타그램 공유하기 기능 호출!');
-                                    handleShareComplete(); // 공유 완료 시 호출
-                                }}
-                                className="w-full bg-[#E4405F] text-white hover:bg-[#D93250]"
-                            >
-                                인스타그램 스토리 공유하기
-                            </Button>
-                            <InstagramShareButton
-                                imagePath={`/images/${type}.jpg`}
-                                onShareComplete={handleShareComplete}  // 추가
-                            />
+                        <div className="flex flex-col items-center space-y-6 mt-4">
+                            <div>
+                                <h3 className='text-sm'>인스타그램 스토리 공유시 @yaktoon 태그해서 올리면 추첨을 통해 기프티콘 보내드립니다!</h3>
+                                <p className='text-xs'>1. 사진 다운로드</p>
+                                <h3 className='text-xs'>2. 인스타그램 눌러서 스토리 제작</h3>
+                            </div>
+                            <div className='flex gap-4'>
+                                <KakaoShareButton
+                                    type={type}
+                                    onShareComplete={handleShareComplete}
+                                />
+                                <InstagramShareButton
+                                    imagePath={`/images/${type}.jpg`}
+                                    onShareComplete={handleShareComplete}  // 추가
+                                />
 
+                            </div>
                             <Button
                                 onClick={() => setIsDialogOpen(false)}
                                 className="w-full bg-gray-500 text-white hover:bg-gray-600"
