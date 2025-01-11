@@ -12,7 +12,7 @@ export default function ResultPage() {
   const router = useRouter();
   const params = useParams(); // useParams 훅 사용하여 params 가져오기
   const type = params.type as keyof typeof TypeInfo;
-  
+
   // 유효하지 않은 타입인 경우 홈으로 리다이렉트
   if (!TypeInfo[type]) {
     router.push('/');
@@ -62,10 +62,10 @@ export default function ResultPage() {
                 ))}
               </ul>
             </div>
-            <div className="mt-8 space-y-4 flex flex-col items-center">
+            <div className="mt-8 flex flex-col items-center bg-gray-100 p-4 rounded-lg shadow-lg gap-2">
+              <h3 className='text-sm border-b-2 w-full text-center pb-2'>인스타그램에 스크린샷을 찍어 스토리 공유시 @yaktoon 태그해서 올리면 추첨을 통해 기프티콘 보내드립니다!</h3>
               <ShareAndReportButton type={type} />
-
-              <a href="https://medsky.co.kr/coaching" target="_blank" rel="noopener noreferrer" className="w-full max-w-md">
+              {/* <a href="https://medsky.co.kr/coaching" target="_blank" rel="noopener noreferrer" className="w-full max-w-md">
                 <Button variant="default" className="w-full bg-black text-white">
                   학습 코칭 알아보기
                 </Button>
@@ -74,7 +74,7 @@ export default function ResultPage() {
                 <Button variant="default" className="w-full bg-[#F7E600] text-black hover:bg-[#E6D700]">
                   카카오톡 상담하기
                 </Button>
-              </a>
+              </a> */}
             </div>
           </div>
         </CardContent>

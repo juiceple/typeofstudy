@@ -31,11 +31,11 @@ export default function ShareAndReportButton({ type }: { type: string }) {
     };
 
     return (
-        <div className="flex justify-center mt-8 w-full">
+        <div className="flex justify-center w-full">
             {!shared ? (
                 <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                     <DialogTrigger asChild>
-                        <Button className="w-full max-w-md bg-yellow-500 hover:bg-yellow-600 text-black">
+                        <Button className="w-full bg-gray-500 hover:bg-black text-white">
                             공유하고 상세 보고서 보기
                         </Button>
                     </DialogTrigger>
@@ -45,9 +45,7 @@ export default function ShareAndReportButton({ type }: { type: string }) {
                         </DialogHeader>
                         <div className="flex flex-col items-center space-y-6 mt-4">
                             <div>
-                                <h3 className='text-sm'>인스타그램 스토리 공유시 @yaktoon 태그해서 올리면 추첨을 통해 기프티콘 보내드립니다!</h3>
-                                <p className='text-xs'>1. 사진 다운로드</p>
-                                <h3 className='text-xs'>2. 인스타그램 눌러서 스토리 제작</h3>
+                                <h3 className='text-sm'>스크린샷을 인스타그램에 공유해주세요!</h3>
                             </div>
                             <div className='flex gap-4'>
                                 <KakaoShareButton
