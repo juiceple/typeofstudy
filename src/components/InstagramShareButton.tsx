@@ -1,46 +1,62 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Share } from "lucide-react";
 
 interface InstagramShareButtonProps {
-  imagePath: string;
+  imagePath: string; // 예: "/images/FA.jpg"
   caption?: string;
+  onShareComplete?: () => void;  // 추가: 부모로부터 넘어오는 콜백
 }
 
-const InstagramShareButton = ({ imagePath, caption = '' }: InstagramShareButtonProps) => {
-  const shareToInstagram = async () => {
-    const baseUrl = window.location.origin;
-    const absoluteImageUrl = `${baseUrl}${imagePath}`;
+const InstagramShareButton = ({ imagePath, caption = "", onShareComplete }: InstagramShareButtonProps) => {
+  const downloadAndShare = async () => {
+    try {
+      // 브라우저 상에서 현재 도메인 정보 가져옴
+      const baseUrl = window.location.origin;
+      const finalImageUrl = new URL(imagePath, baseUrl).href;
 
-    // 모바일 기기 확인
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-    if (isMobile) {
-      // 웹 공유 API 지원 확인
-      if (navigator.share) {
-        try {
-          await navigator.share({
-            title: caption,
-            text: caption,
-            url: absoluteImageUrl,
-          });
-        } catch (error) {
-          console.error('Error sharing:', error);
-          // 공유 API 실패시 인스타그램 앱으로 직접 이동
-          window.location.href = `instagram://camera`;
-        }
-      } else {
-        // 공유 API를 지원하지 않는 경우 인스타그램 앱으로 직접 이동
-        window.location.href = `instagram://camera`;
+      // 이미지 fetch -> blob 변환
+      const response = await fetch(finalImageUrl);
+      if (!response.ok) {
+        throw new Error("이미지를 불러오는데 실패했습니다.");
       }
-    } else {
-      // 데스크톱에서는 인스타그램 웹사이트로 이동
-      window.open('https://www.instagram.com', '_blank');
+      const blob = await response.blob();
+
+      // 다운로드를 위한 임시 링크 생성 -> 클릭
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "share-image.jpg";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+
+      // 모바일 기기 확인
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+      // 인스타그램 앱으로 이동
+      if (isMobile) {
+        window.location.href = "instagram://story-camera";
+      } else {
+        window.open("https://www.instagram.com", "_blank");
+      }
+
+      // ★★★ 여기서 부모의 handleShareComplete() 호출
+      if (onShareComplete) {
+        onShareComplete();
+      }
+
+    } catch (error) {
+      console.error("Error downloading image:", error);
+      alert("이미지 다운로드 중 오류가 발생했습니다.");
     }
   };
 
   return (
     <Button
-      onClick={shareToInstagram}
+      onClick={downloadAndShare}
       className="flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
     >
       <Share className="w-4 h-4" />
