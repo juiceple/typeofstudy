@@ -70,7 +70,7 @@ export default function ShareAndReportButton({ type }: { type: string }) {
             ) : (
                 <Button
                     onClick={handleReportView}
-                    className="w-full max-w-md bg-blue-600 hover:bg-blue-700 text-white"
+                    className="w-full bg-gray-500 hover:bg-black text-white"
                 >
                     상세 보고서 보기
                 </Button>
