@@ -53,7 +53,7 @@ export default function ShareAndReportButton({ type }: { type: string }) {
                                     onShareComplete={handleShareComplete}
                                 />
                                 <InstagramShareButton
-                                    imagePath={`/images/${type}.jpg`}
+                                    // imagePath={`/images/${type}.jpg`}
                                     onShareComplete={handleShareComplete}  // 추가
                                 />
 

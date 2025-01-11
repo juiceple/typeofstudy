@@ -3,7 +3,6 @@
 
 import { TypeInfo } from '../types';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import ShareAndReportButton from '@/components/ShareAndReportButton';
 import Image from 'next/image';
 import { useRouter, useParams } from 'next/navigation';
