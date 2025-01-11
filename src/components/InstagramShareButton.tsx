@@ -1,16 +1,16 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 interface TwoStepShareProps {
-  imagePath: string; // 예: "/images/FA.jpg"
+//   imagePath: string; // 예: "/images/FA.jpg"
   onShareComplete?: () => void; // 부모에서 받아오는 콜백
 }
 
 export default function TwoStepShare({
-  imagePath,
+//   imagePath,
   onShareComplete,
 }: TwoStepShareProps) {
 
