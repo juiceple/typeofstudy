@@ -6,16 +6,11 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import ShareAndReportButton from '@/components/ShareAndReportButton';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 
-type Props = {
-  params: {
-    type: string;
-  };
-}
-
-export default function ResultPage({ params }: Props) {
+export default function ResultPage() {
   const router = useRouter();
+  const params = useParams(); // useParams 훅 사용하여 params 가져오기
   const type = params.type as keyof typeof TypeInfo;
   
   // 유효하지 않은 타입인 경우 홈으로 리다이렉트
