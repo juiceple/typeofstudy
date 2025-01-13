@@ -39,7 +39,7 @@ export default function ShareAndReportButton({ type }: { type: string }) {
                             링크 공유하고 재수확률 줄이는 법 알아보기
                         </Button>
                     </DialogTrigger>
-                    <DialogContent className="max-w-xs">
+                    <DialogContent className="max-w-xs rounded-lg">
                         <DialogHeader>
                             <DialogTitle className="text-center">친구들과 공유하기</DialogTitle>
                         </DialogHeader>
