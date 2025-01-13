@@ -4,7 +4,7 @@ import { Questions } from './types';
 import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { AlertDialog, AlertDialogTitle, AlertDialogContent, AlertDialogAction } from '@/components/ui/alert-dialog';
+import { AlertDialog, AlertDialogTitle, AlertDialogContent} from '@/components/ui/alert-dialog';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { CircleX } from 'lucide-react';
