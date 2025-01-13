@@ -18,7 +18,6 @@ export default function ResultPage() {
     return null;
   }
 
-  const result = TypeInfo[type];
 
   return (
     <main className="container mx-auto px-4 py-8">
