@@ -39,9 +39,6 @@ export default function ResultPage() {
           <CardTitle className="text-2xl font-bold text-center">
             학습 유형 진단 결과
           </CardTitle>
-          <p className="text-xl text-center mt-4">
-            {`당신의 학습 유형은 ${result.name}입니다!`}
-          </p>
         </CardHeader>
         <CardContent>
           <div className="space-y-6">

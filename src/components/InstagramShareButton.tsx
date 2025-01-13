@@ -42,7 +42,7 @@ export default function TwoStepShare({
       {/* 인스타그램 버튼 */}
       <Button
         onClick={handleOpenInstagram}
-        className="relative rounded-full bg-gray-200 hover:bg-gray-300 w-12 h-12 shadow-md overflow-hidden"
+        className="relative rounded-full bg-white hover:bg-gray-100 w-12 h-12 shadow-md overflow-hidden"
         // disabled={!isDownloaded} // 다운로드 완료 후 활성화
       >
         <Image
