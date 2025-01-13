@@ -4,7 +4,7 @@ import { Questions } from './types';
 import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { AlertDialog, AlertDialogTitle, AlertDialogContent} from '@/components/ui/alert-dialog';
+import { AlertDialog, AlertDialogTitle, AlertDialogContent } from '@/components/ui/alert-dialog';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { CircleX } from 'lucide-react';
@@ -47,15 +47,15 @@ export default function Home() {
     <main className="container mx-auto px-4 py-8">
       <AlertDialog open={showAlert} onOpenChange={setShowAlert}>
         <AlertDialogTitle></AlertDialogTitle>
-        <AlertDialogContent>
+        <AlertDialogContent className="mx-auto max-w-sm rounded-lg">
           <div className="space-y-2 text-center">
             <div className="text-m text-red-600 font-bold">주의</div>
             <div className="text-lg">재미로만 봐주세요</div>
             <div className="text-sm text-gray-500">made by 알약툰, 메드스카이</div>
           </div>
           <div className="flex justify-center">
-            <button 
-            onClick={() => setShowAlert(false)}
+            <button
+              onClick={() => setShowAlert(false)}
               className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
             >
               <CircleX className="h-5 w-5" />
@@ -63,6 +63,7 @@ export default function Home() {
           </div>
         </AlertDialogContent>
       </AlertDialog>
+
 
       <div className="flex justify-center mb-8">
         <Image
