@@ -46,7 +46,7 @@ export default function TwoStepShare({
         // disabled={!isDownloaded} // 다운로드 완료 후 활성화
       >
         <Image
-          src="/images/instagramlogo.jpeg"
+          src="/images/instagram-logo.png"
           alt="Instagram Logo"
           fill // 부모에 맞춰 꽉 차게 설정
           className="object-cover"

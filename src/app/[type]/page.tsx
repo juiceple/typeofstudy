@@ -46,25 +46,18 @@ export default function ResultPage() {
         <CardContent>
           <div className="space-y-6">
             <div>
-              <h3 className="text-lg font-semibold mb-2">장점</h3>
-              <ul className="list-disc pl-5 space-y-2">
-                {result.advantages.map((adv, i) => (
-                  <li key={i}>{adv}</li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-2">단점</h3>
-              <ul className="list-disc pl-5 space-y-2">
-                {result.disadvantages.map((dis, i) => (
-                  <li key={i}>{dis}</li>
-                ))}
-              </ul>
-            </div>
-            <div className="mt-8 flex flex-col items-center bg-gray-100 p-4 rounded-lg shadow-lg gap-2">
-              <h3 className='text-sm border-b-2 w-full text-center pb-2'>인스타그램에 스크린샷을 찍어 스토리 공유시 @yaktoon 태그해서 올리면 추첨을 통해 기프티콘 보내드립니다!</h3>
-              <ShareAndReportButton type={type} />
-              {/* <a href="https://medsky.co.kr/coaching" target="_blank" rel="noopener noreferrer" className="w-full max-w-md">
+              <Image
+                src={`/images/${type}.png`}
+                alt="type report"
+                width={1000}
+                height={40}
+                priority
+              />
+          </div>
+          <div className="mt-8 flex flex-col items-center bg-gray-100 p-4 rounded-lg shadow-lg gap-2">
+            <h3 className='text-sm border-b-2 w-full text-center pb-2'>인스타그램에 스크린샷을 찍어 스토리 공유시 @yaktoon 태그해서 올리면 추첨을 통해 기프티콘 보내드립니다!</h3>
+            <ShareAndReportButton type={type} />
+            {/* <a href="https://medsky.co.kr/coaching" target="_blank" rel="noopener noreferrer" className="w-full max-w-md">
                 <Button variant="default" className="w-full bg-black text-white">
                   학습 코칭 알아보기
                 </Button>
@@ -74,10 +67,10 @@ export default function ResultPage() {
                   카카오톡 상담하기
                 </Button>
               </a> */}
-            </div>
           </div>
-        </CardContent>
-      </Card>
-    </main>
+        </div>
+      </CardContent>
+    </Card>
+    </main >
   );
 }

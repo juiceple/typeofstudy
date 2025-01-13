@@ -76,7 +76,7 @@ const KakaoShareButton = ({ type, onShareComplete }: KakaoShareButtonProps) => {
             content: {
                 title: '나의 재수 확률은?',
                 description: `${type} 유형의 재수 확률을 알아보세요!`,
-                imageUrl: `${window.location.origin}/images/${type}.jpg`,
+                imageUrl: `${window.location.origin}/images/${type}.png`,
                 link: {
                     mobileWebUrl: window.location.origin,
                     webUrl: window.location.origin,
