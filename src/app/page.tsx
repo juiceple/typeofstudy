@@ -47,7 +47,7 @@ export default function Home() {
     <main className="container mx-auto px-4 py-8">
       <AlertDialog open={showAlert} onOpenChange={setShowAlert}>
         <AlertDialogTitle></AlertDialogTitle>
-        <AlertDialogContent className="mx-auto max-w-sm rounded-lg">
+        <AlertDialogContent className="max-w-xs rounded-lg">
           <div className="space-y-2 text-center">
             <div className="text-m text-red-600 font-bold">주의</div>
             <div className="text-lg">재미로만 봐주세요</div>
