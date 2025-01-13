@@ -36,7 +36,7 @@ export default function ShareAndReportButton({ type }: { type: string }) {
                 <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                     <DialogTrigger asChild>
                         <Button className="w-full bg-gray-500 hover:bg-black text-white">
-                            공유하고 상세 보고서 보기
+                            링크 공유하고 재수확률 줄이는 법 알아보기
                         </Button>
                     </DialogTrigger>
                     <DialogContent className="max-w-xs">
@@ -44,9 +44,6 @@ export default function ShareAndReportButton({ type }: { type: string }) {
                             <DialogTitle className="text-center">친구들과 공유하기</DialogTitle>
                         </DialogHeader>
                         <div className="flex flex-col items-center space-y-6 mt-4">
-                            <div>
-                                <h3 className='text-sm'>스크린샷을 인스타그램에 공유해주세요!</h3>
-                            </div>
                             <div className='flex gap-4'>
                                 <KakaoShareButton
                                     type={type}
@@ -58,12 +55,6 @@ export default function ShareAndReportButton({ type }: { type: string }) {
                                 />
 
                             </div>
-                            <Button
-                                onClick={() => setIsDialogOpen(false)}
-                                className="w-full bg-gray-500 text-white hover:bg-gray-600"
-                            >
-                                닫기
-                            </Button>
                         </div>
                     </DialogContent>
                 </Dialog>
@@ -72,7 +63,7 @@ export default function ShareAndReportButton({ type }: { type: string }) {
                     onClick={handleReportView}
                     className="w-full bg-gray-500 hover:bg-black text-white"
                 >
-                    상세 보고서 보기
+                    재수확률 줄이는 법 알아보기
                 </Button>
             )}
         </div>

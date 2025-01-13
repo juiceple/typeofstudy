@@ -1,17 +1,18 @@
-// app/page.tsx
-'use client';
-
+"use client"
 import { useEffect, useState } from 'react'
 import { Questions } from './types';
 import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { AlertDialog, AlertDialogTitle, AlertDialogContent, AlertDialogAction } from '@/components/ui/alert-dialog';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { CircleX } from 'lucide-react';
 
 export default function Home() {
   const router = useRouter();
   const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [showAlert, setShowAlert] = useState(true);
   const [scores, setScores] = useState<Record<string, number>>({
     WP: 0,
     PB: 0,
@@ -22,8 +23,8 @@ export default function Home() {
   });
 
   useEffect(() => {
-          localStorage.setItem('userType', '')
-      }, []);
+    localStorage.setItem('userType', '')
+  }, []);
 
   const handleAnswer = (score: number) => {
     const question = Questions[currentQuestion];
@@ -36,17 +37,33 @@ export default function Home() {
     if (currentQuestion + 1 < Questions.length) {
       setCurrentQuestion(prev => prev + 1);
     } else {
-      // 최종 점수 계산
       const maxType = Object.entries(newScores).reduce((max, [type, score]) =>
         score > max[1] ? [type, score] : max, ['', -1])[0];
-      
-      // 결과 페이지로 리다이렉트
       router.push(`/${maxType}`);
     }
   };
 
   return (
     <main className="container mx-auto px-4 py-8">
+      <AlertDialog open={showAlert} onOpenChange={setShowAlert}>
+        <AlertDialogTitle></AlertDialogTitle>
+        <AlertDialogContent>
+          <div className="space-y-2 text-center">
+            <div className="text-m text-red-600 font-bold">주의</div>
+            <div className="text-lg">재미로만 봐주세요</div>
+            <div className="text-sm text-gray-500">made by 알약툰, 메드스카이</div>
+          </div>
+          <div className="flex justify-center">
+            <button 
+            onClick={() => setShowAlert(false)}
+              className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+            >
+              <CircleX className="h-5 w-5" />
+            </button>
+          </div>
+        </AlertDialogContent>
+      </AlertDialog>
+
       <div className="flex justify-center mb-8">
         <Image
           src="/medsky-logo.png"

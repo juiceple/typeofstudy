@@ -51,7 +51,7 @@ export default function ResultPage() {
               />
           </div>
           <div className="mt-8 flex flex-col items-center bg-gray-100 p-4 rounded-lg shadow-lg gap-2">
-            <h3 className='text-sm border-b-2 w-full text-center pb-2'>인스타그램에 스크린샷을 찍어 스토리 공유시 @yaktoon 태그해서 올리면 추첨을 통해 기프티콘 보내드립니다!</h3>
+            <h3 className='text-sm border-b-2 w-full text-center pb-2'>인스타그램에 스크린샷을 찍어 사이트 링크와 함께 스토리 공유시 @yaktoon 태그해서 올리면 추첨을 통해 기프티콘을 보내드립니다!</h3>
             <ShareAndReportButton type={type} />
             {/* <a href="https://medsky.co.kr/coaching" target="_blank" rel="noopener noreferrer" className="w-full max-w-md">
                 <Button variant="default" className="w-full bg-black text-white">
