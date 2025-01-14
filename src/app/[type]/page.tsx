@@ -60,7 +60,7 @@ export default function ResultPage() {
                   href={"/"}
                   className="w-full"
                 >
-                  진단 받기
+                  새로 진단 받기
                 </Link>
               </Button>
               {/* <a href="https://medsky.co.kr/coaching" target="_blank" rel="noopener noreferrer" className="w-full max-w-md">
