@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "medsky studytype",
+  title: "학습유형",
   description: "메드스카이의 다년간 학습코칭으로 쌓은 데이터 기반으로 학습 유형을 진단받아보세요!",
 };
 
