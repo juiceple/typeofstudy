@@ -71,6 +71,14 @@ export default function ResultPage() {
                   메드스카이 알아보기
                 </Link>
               </Button>
+              <Button className="w-full bg-gray-500 hover:bg-black text-white">
+                <Link
+                  href={"https://band.us/@medsky"}
+                  className="w-full"
+                >
+                  무료 고민상담 받기
+                </Link>
+              </Button>
               {/* <a href="https://medsky.co.kr/coaching" target="_blank" rel="noopener noreferrer" className="w-full max-w-md">
                 <Button variant="default" className="w-full bg-black text-white">
                   학습 코칭 알아보기
